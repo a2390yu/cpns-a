@@ -1,23 +1,28 @@
-name "ppp-repeat-3"
+name "appp-repeat-3"
 
 nodes [
 	place "h2o"
-	place "ribulose-5-phosphate"
+	place "r5p-xylulose"
+	place "hydrophosphate"
 	place "p_{0,0}"
+	place "ribose-5-phosphate"
 	place "p_{0,1}"
 	place "p_{0,2}"
 	place "p_{0,3}"
 	place "p_{0,4}"
+	place "sedoheptulose"
 	place "p_{0,5}"
+	place "gly3"
 	place "p_{0,6}"
 	place "p_{0,7}"
+	place "fructose-6-phosphate"
+	place "ery4"
 	place "p_{0,8}"
 	place "p_{0,9}"
 	place "p_{0,10}"
 	place "p_{0,11}"
 	place "p_{0,12}"
 	place "p_{0,13}"
-	place "fructose-6-phosphate"
 	place "p_{0,14}"
 	place "p_{0,15}"
 	place "p_{0,16}"
@@ -40,14 +45,7 @@ nodes [
 	place "p_{0,33}"
 	place "p_{0,34}"
 	place "p_{0,35}"
-	place "p_{0,36}"
-	place "p_{0,37}"
-	place "p_{0,38}"
-	place "p_{0,39}"
-	place "p_{0,40}"
-	place "p_{0,41}"
-	place "p_{0,42}"
-	place "p_{0,43}"
+	place "glycerone-phosphate"
 
 	trans "t0"
 	trans "t1"
@@ -139,109 +137,97 @@ nodes [
 	trans "t87"
 	trans "t88"
 	trans "t89"
-	trans "t90"
-	trans "t91"
-	trans "t92"
-	trans "t93"
-	trans "t94"
-	trans "t95"
 ]
 
 incidence [
-	ribulose-5-phosphate t0 p_{0,0}
-	h2o ribulose-5-phosphate t1 p_{0,1} p_{0,2}
-	p_{0,0} p_{0,2} t2 p_{0,3} p_{0,4}
-	ribulose-5-phosphate p_{0,0} t3 p_{0,4} p_{0,5}
-	p_{0,0} p_{0,2} t4 p_{0,6} p_{0,7}
-	ribulose-5-phosphate p_{0,0} t5 p_{0,7} p_{0,8}
-	p_{0,0} p_{0,2} t6 p_{0,9}
-	ribulose-5-phosphate p_{0,0} t7 p_{0,10}
-	p_{0,2} t8 p_{0,11}
-	h2o p_{0,0} t9 p_{0,1} p_{0,11}
-	p_{0,0} t10 ribulose-5-phosphate
-	p_{0,3} p_{0,4} t11 p_{0,0} p_{0,2}
-	p_{0,3} p_{0,7} t12 p_{0,2} p_{0,12}
-	p_{0,2} p_{0,3} t13 p_{0,2} p_{0,3}
-	ribulose-5-phosphate p_{0,3} t14 p_{0,2} p_{0,5}
-	p_{0,4} p_{0,5} t15 ribulose-5-phosphate p_{0,0}
-	p_{0,4} p_{0,6} t16 p_{0,0} p_{0,13}
-	p_{0,4} p_{0,8} t17 fructose-6-phosphate p_{0,0}
-	p_{0,4} p_{0,11} t18 p_{0,0} p_{0,14}
-	p_{0,0} p_{0,4} t19 p_{0,0} p_{0,4}
-	p_{0,5} p_{0,7} t20 ribulose-5-phosphate p_{0,12}
-	p_{0,2} p_{0,5} t21 ribulose-5-phosphate p_{0,3}
-	ribulose-5-phosphate p_{0,5} t22 ribulose-5-phosphate p_{0,5}
-	p_{0,6} p_{0,7} t23 p_{0,12} p_{0,13}
-	p_{0,2} p_{0,6} t24 p_{0,3} p_{0,13}
-	ribulose-5-phosphate p_{0,6} t25 p_{0,5} p_{0,13}
-	p_{0,7} p_{0,8} t26 fructose-6-phosphate p_{0,12}
-	p_{0,7} p_{0,11} t27 p_{0,12} p_{0,14}
-	p_{0,0} p_{0,7} t28 p_{0,4} p_{0,12}
-	p_{0,2} p_{0,8} t29 fructose-6-phosphate p_{0,3}
-	ribulose-5-phosphate p_{0,8} t30 fructose-6-phosphate p_{0,5}
-	p_{0,2} p_{0,11} t31 p_{0,3} p_{0,14}
-	ribulose-5-phosphate p_{0,11} t32 p_{0,5} p_{0,14}
-	p_{0,3} p_{0,4} t33 p_{0,15} p_{0,16}
-	p_{0,3} p_{0,7} t34 p_{0,0} p_{0,16}
-	p_{0,2} p_{0,3} t35 p_{0,6} p_{0,16}
-	ribulose-5-phosphate p_{0,3} t36 p_{0,8} p_{0,16}
-	p_{0,4} p_{0,5} t37 p_{0,15} p_{0,17}
-	p_{0,4} p_{0,6} t38 p_{0,2} p_{0,15}
-	p_{0,4} p_{0,8} t39 ribulose-5-phosphate p_{0,15}
-	p_{0,4} p_{0,11} t40 p_{0,15} p_{0,18}
-	p_{0,0} p_{0,4} t41 p_{0,7} p_{0,15}
-	p_{0,5} p_{0,7} t42 p_{0,0} p_{0,17}
-	p_{0,2} p_{0,5} t43 p_{0,6} p_{0,17}
-	ribulose-5-phosphate p_{0,5} t44 p_{0,8} p_{0,17}
-	p_{0,6} p_{0,7} t45 p_{0,0} p_{0,2}
-	p_{0,2} p_{0,6} t46 p_{0,2} p_{0,6}
-	ribulose-5-phosphate p_{0,6} t47 p_{0,2} p_{0,8}
-	p_{0,7} p_{0,8} t48 ribulose-5-phosphate p_{0,0}
-	p_{0,7} p_{0,11} t49 p_{0,0} p_{0,18}
-	p_{0,0} p_{0,7} t50 p_{0,0} p_{0,7}
-	p_{0,2} p_{0,8} t51 ribulose-5-phosphate p_{0,6}
-	ribulose-5-phosphate p_{0,8} t52 ribulose-5-phosphate p_{0,8}
-	p_{0,2} p_{0,11} t53 p_{0,6} p_{0,18}
-	ribulose-5-phosphate p_{0,11} t54 p_{0,8} p_{0,18}
-	2.0 p_{0,3} t55 p_{0,19}
-	p_{0,3} p_{0,4} t56 p_{0,9}
-	p_{0,3} p_{0,7} t57 p_{0,20}
-	p_{0,2} p_{0,3} t58 p_{0,21}
-	ribulose-5-phosphate p_{0,3} t59 p_{0,22}
-	p_{0,3} p_{0,5} t60 p_{0,12}
-	p_{0,3} p_{0,6} t61 p_{0,11}
-	p_{0,3} p_{0,8} t62 p_{0,0}
-	p_{0,3} p_{0,11} t63 p_{0,23}
-	p_{0,0} p_{0,3} t64 p_{0,24}
-	p_{0,4} p_{0,5} t65 p_{0,10}
-	p_{0,4} p_{0,6} t66 p_{0,25}
-	p_{0,4} p_{0,8} t67 p_{0,26}
-	p_{0,4} p_{0,11} t68 p_{0,27}
-	p_{0,0} p_{0,4} t69 p_{0,28}
-	p_{0,5} p_{0,7} t70 p_{0,29}
-	p_{0,2} p_{0,5} t71 p_{0,22}
-	ribulose-5-phosphate p_{0,5} t72 p_{0,30}
-	p_{0,6} p_{0,7} t73 p_{0,31}
-	p_{0,2} p_{0,6} t74 p_{0,32}
-	ribulose-5-phosphate p_{0,6} t75 p_{0,33}
-	p_{0,7} p_{0,8} t76 p_{0,34}
-	p_{0,7} p_{0,11} t77 p_{0,35}
-	p_{0,0} p_{0,7} t78 p_{0,36}
-	p_{0,2} p_{0,8} t79 p_{0,37}
-	ribulose-5-phosphate p_{0,8} t80 p_{0,38}
-	p_{0,2} p_{0,11} t81 p_{0,39}
-	ribulose-5-phosphate p_{0,11} t82 p_{0,40}
-	p_{0,3} t83 p_{0,3}
-	p_{0,4} t84 p_{0,41}
-	p_{0,7} t85 p_{0,24}
-	h2o p_{0,4} t86 p_{0,1} p_{0,14}
-	h2o p_{0,5} t87 p_{0,1} p_{0,3}
-	h2o p_{0,7} t88 p_{0,1} p_{0,18}
-	h2o p_{0,8} t89 p_{0,1} p_{0,6}
-	h2o p_{0,9} t90 p_{0,1} p_{0,39}
-	h2o p_{0,10} t91 p_{0,1} p_{0,9}
-	h2o p_{0,10} t92 p_{0,1} p_{0,40}
-	p_{0,6} t93 p_{0,42}
-	p_{0,8} t94 p_{0,43}
-	p_{0,11} t95 p_{0,2}
+	h2o r5p-xylulose t0 hydrophosphate p_{0,0}
+	r5p-xylulose t1 ribose-5-phosphate
+	ribose-5-phosphate p_{0,0} t2 p_{0,1} p_{0,2}
+	ribose-5-phosphate r5p-xylulose t3 p_{0,1} p_{0,3}
+	h2o ribose-5-phosphate t4 hydrophosphate p_{0,4}
+	ribose-5-phosphate p_{0,0} t5 sedoheptulose p_{0,5}
+	ribose-5-phosphate r5p-xylulose t6 sedoheptulose gly3
+	ribose-5-phosphate p_{0,0} t7 p_{0,6}
+	ribose-5-phosphate r5p-xylulose t8 p_{0,7}
+	ribose-5-phosphate t9 r5p-xylulose
+	gly3 p_{0,1} t10 ribose-5-phosphate fructose-6-phosphate
+	sedoheptulose gly3 t11 fructose-6-phosphate ery4
+	r5p-xylulose gly3 t12 fructose-6-phosphate p_{0,3}
+	gly3 p_{0,0} t13 fructose-6-phosphate p_{0,2}
+	p_{0,1} p_{0,2} t14 ribose-5-phosphate p_{0,0}
+	p_{0,1} p_{0,3} t15 ribose-5-phosphate r5p-xylulose
+	p_{0,1} p_{0,4} t16 ribose-5-phosphate p_{0,8}
+	p_{0,1} p_{0,5} t17 ribose-5-phosphate p_{0,9}
+	ribose-5-phosphate p_{0,1} t18 ribose-5-phosphate p_{0,1}
+	sedoheptulose p_{0,2} t19 ery4 p_{0,0}
+	r5p-xylulose p_{0,2} t20 p_{0,0} p_{0,3}
+	p_{0,0} p_{0,2} t21 p_{0,0} p_{0,2}
+	sedoheptulose p_{0,3} t22 r5p-xylulose ery4
+	r5p-xylulose p_{0,3} t23 r5p-xylulose p_{0,3}
+	p_{0,0} p_{0,3} t24 r5p-xylulose p_{0,2}
+	sedoheptulose p_{0,4} t25 ery4 p_{0,8}
+	r5p-xylulose p_{0,4} t26 p_{0,3} p_{0,8}
+	p_{0,0} p_{0,4} t27 p_{0,2} p_{0,8}
+	sedoheptulose p_{0,5} t28 ery4 p_{0,9}
+	r5p-xylulose p_{0,5} t29 p_{0,3} p_{0,9}
+	p_{0,0} p_{0,5} t30 p_{0,2} p_{0,9}
+	ribose-5-phosphate sedoheptulose t31 ery4 p_{0,1}
+	h2o gly3 t32 hydrophosphate p_{0,5}
+	h2o p_{0,1} t33 hydrophosphate p_{0,8}
+	h2o p_{0,3} t34 hydrophosphate p_{0,2}
+	h2o p_{0,6} t35 hydrophosphate p_{0,10}
+	h2o p_{0,7} t36 hydrophosphate p_{0,6}
+	h2o p_{0,7} t37 hydrophosphate p_{0,11}
+	h2o sedoheptulose t38 hydrophosphate p_{0,12}
+	gly3 p_{0,1} t39 r5p-xylulose p_{0,13}
+	sedoheptulose gly3 t40 ribose-5-phosphate r5p-xylulose
+	r5p-xylulose gly3 t41 r5p-xylulose gly3
+	gly3 p_{0,0} t42 r5p-xylulose p_{0,5}
+	p_{0,1} p_{0,2} t43 p_{0,13} p_{0,14}
+	p_{0,1} p_{0,3} t44 p_{0,13} p_{0,15}
+	p_{0,1} p_{0,4} t45 p_{0,12} p_{0,13}
+	p_{0,1} p_{0,5} t46 p_{0,0} p_{0,13}
+	ribose-5-phosphate p_{0,1} t47 sedoheptulose p_{0,13}
+	sedoheptulose p_{0,2} t48 ribose-5-phosphate p_{0,14}
+	r5p-xylulose p_{0,2} t49 gly3 p_{0,14}
+	p_{0,0} p_{0,2} t50 p_{0,5} p_{0,14}
+	sedoheptulose p_{0,3} t51 ribose-5-phosphate p_{0,15}
+	r5p-xylulose p_{0,3} t52 gly3 p_{0,15}
+	p_{0,0} p_{0,3} t53 p_{0,5} p_{0,15}
+	sedoheptulose p_{0,4} t54 ribose-5-phosphate p_{0,12}
+	r5p-xylulose p_{0,4} t55 gly3 p_{0,12}
+	p_{0,0} p_{0,4} t56 p_{0,5} p_{0,12}
+	sedoheptulose p_{0,5} t57 ribose-5-phosphate p_{0,0}
+	r5p-xylulose p_{0,5} t58 gly3 p_{0,0}
+	p_{0,0} p_{0,5} t59 p_{0,0} p_{0,5}
+	ribose-5-phosphate sedoheptulose t60 ribose-5-phosphate sedoheptulose
+	gly3 p_{0,1} t61 p_{0,16}
+	gly3 p_{0,2} t62 ribose-5-phosphate
+	sedoheptulose gly3 t63 p_{0,17}
+	r5p-xylulose gly3 t64 p_{0,18}
+	gly3 p_{0,0} t65 p_{0,19}
+	p_{0,1} p_{0,2} t66 p_{0,6}
+	p_{0,1} p_{0,3} t67 p_{0,7}
+	p_{0,1} p_{0,4} t68 p_{0,20}
+	p_{0,1} p_{0,5} t69 p_{0,21}
+	ribose-5-phosphate p_{0,1} t70 p_{0,22}
+	2.0 p_{0,2} t71 p_{0,23}
+	sedoheptulose p_{0,2} t72 p_{0,24}
+	r5p-xylulose p_{0,2} t73 p_{0,25}
+	p_{0,0} p_{0,2} t74 p_{0,26}
+	p_{0,2} p_{0,3} t75 ery4
+	p_{0,2} p_{0,4} t76 p_{0,27}
+	p_{0,2} p_{0,5} t77 p_{0,4}
+	ribose-5-phosphate p_{0,2} t78 p_{0,28}
+	sedoheptulose p_{0,3} t79 p_{0,29}
+	r5p-xylulose p_{0,3} t80 p_{0,30}
+	p_{0,0} p_{0,3} t81 p_{0,25}
+	sedoheptulose p_{0,4} t82 p_{0,31}
+	r5p-xylulose p_{0,4} t83 p_{0,11}
+	p_{0,0} p_{0,4} t84 p_{0,10}
+	sedoheptulose p_{0,5} t85 p_{0,32}
+	r5p-xylulose p_{0,5} t86 p_{0,33}
+	p_{0,0} p_{0,5} t87 p_{0,34}
+	ribose-5-phosphate sedoheptulose t88 p_{0,35}
+	gly3 t89 glycerone-phosphate
 ]

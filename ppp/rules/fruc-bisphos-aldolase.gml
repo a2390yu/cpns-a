@@ -1,5 +1,9 @@
 rule [
-	ruleID "Aldolase"
+	ruleID "Fructose-bisphosphate aldolase"
+
+	# fructose-bisphophate aldolase
+	# glyceraldehyde 3-phosphate + glycerone phosphate -> fructofuranose 1,6-bisphosphate
+
 	left [
 		edge [ source 1 target 4 label "-" ]
 

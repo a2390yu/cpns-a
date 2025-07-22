@@ -1,4 +1,5 @@
 rule [
+	# sedoheptulose and gly3 --> ery-4 and f6p
 	ruleID "Transaldolase"
 	left [
 		edge [ source 8 target 15 label "-" ]

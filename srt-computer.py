@@ -107,7 +107,7 @@ def main():
     if args.max: algs.append("max")
     if len(algs)==0: algs.append("exact")
 
-    sm = [("ribulose-5-phosphate", 1.0), ("h2o", 1.0)]
+    sm = [("r5p-xylulose", 1.0), ("h2o", 1.0)]
     em = [("fructose-6-phosphate", 1.0)]
 
     if args.fragility:

@@ -1,5 +1,8 @@
 rule [
-	ruleID "Phophohydrolase"
+	ruleID "fructose-bisphosphatase"
+
+	# h2o + fructofuranose 1,6-bisphosphate -> hydrogenphosphate + f6p
+
 	left [
 		edge [ source 0 target 6 label "-" ]
 

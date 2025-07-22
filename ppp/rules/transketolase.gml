@@ -1,4 +1,6 @@
 rule [
+	# r5p and xylulose --> sedoheptulose and gly-3
+	# ery-4 and xylulose --> f6p and gly3
 	ruleID "Transketolase"
 	left [
 		edge [ source 8 target 6 label "-" ]

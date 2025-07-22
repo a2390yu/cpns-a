@@ -1,17 +1,17 @@
-name "ppp-repeat-1"
+name "appp-repeat-1"
 
 nodes [
 	place "h2o"
-	place "ribulose-5-phosphate"
+	place "r5p-xylulose"
+	place "hydrophosphate"
 	place "p_{0,0}"
-	place "p_{0,1}"
-	place "p_{0,2}"
+	place "ribose-5-phosphate"
 
 	trans "t0"
 	trans "t1"
 ]
 
 incidence [
-	ribulose-5-phosphate t0 p_{0,0}
-	h2o ribulose-5-phosphate t1 p_{0,1} p_{0,2}
+	h2o r5p-xylulose t0 hydrophosphate p_{0,0}
+	r5p-xylulose t1 ribose-5-phosphate
 ]
