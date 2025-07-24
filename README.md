@@ -1,4 +1,4 @@
-# Polynomial Time Algorithm for Deciding Achievable Token Mass in Continuous Petri Nets
+# Continuous Petri Nets for Fast Yield Computation: Polynomial-Time and MILP Approaches
 
 2025
 
