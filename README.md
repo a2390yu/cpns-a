@@ -10,7 +10,7 @@ We thus propose continuous Petri nets (CPNs) as a new way of modeling chemical r
 
 ## `AtLeastReachable`
 
-`AtLeastReachable` decides if at least x (x>0) token mass is reachable on a goal place given a set of initial molecule quantities. For example, in the pentose phosphate pathway, we can start with 1.0 token mass on ribose-6-phosphate and 1.0 token mass on H2O and then ask if at least 0.3 token mass can be moved to fructose-6-phosphate. Furthermore, our algorithm achieves this decision in polynomial running time.
+`AtLeastReachable` decides if at least x (x>0) token mass is reachable on a goal place given a set of initial molecule quantities. For example, in the pentose phosphate pathway, we can start with 1.0 token mass on ribulose-5-phosphate and 1.0 token mass on H2O and then ask if at least 0.3 token mass can be moved to fructose-6-phosphate. Furthermore, our algorithm achieves this decision in polynomial running time.
 
 Note: since `AtLeastReachable` only returns true or false, another algorithm must be added to find the maximum amount of token mass which can be placed on the goal compound. For this, we used binary search.
 
