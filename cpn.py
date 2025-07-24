@@ -63,45 +63,6 @@ class cpn:
     def transitions(self):
         return self._transitions
 
-    # percent is number of transitions to remove / total number transitions
-    # 0 <= percent <= 1
-    def remove_random_n_transitions(self, percent):
-        if percent > 1 or percent < 0:
-            print(red(f"Cannot remove {percent}% of transitions."))
-            return nx.Graph()
-
-        removed_trans = random.sample(self._transitions, int(round(len(self._transitions)*percent)))
-        new_graph = self._graph.copy()
-        for t in removed_trans:
-            new_graph.remove_node(t)
-
-        new_net = cpn(graph=new_graph)
-        return new_net
-
-    # n is number of times to run the algorithm
-    # percent is percentage of transitions to randomly remove
-    def calculate_fragility(self, sm, em, alg='min', percent=0.5, n=5):
-        num_succ = 0
-        sum_obj_val = 0
-        for i in range(n):
-            test_net = self.remove_random_n_transitions(percent)
-            if alg == 'max':
-                (succ, sol, obj_val) = test_net.maximize_goal_compound(sm, em)
-                if succ:
-                    num_succ += 1
-                    sum_obj_val += obj_val
-            elif alg == 'min':
-                obj_val = test_net.max_min(sm, em, lim_reachability=True)
-                sum_obj_val += obj_val
-                num_succ += 1
-            
-        print(f"\n\n=====================\nNumber of successes: {num_succ}")
-        print(f"Total runs: {n}")
-        print(f"Success rate: {float(num_succ)/n}")
-        if num_succ > 0:
-            print(f"Average objective value: {float(sum_obj_val)/num_succ}")
-
-
     def build_pre_incidence(self, transition_set):
         c = [[ 0 for i in range(len(self._transitions))] for j in range(len(self._places))]
         
@@ -154,53 +115,6 @@ class cpn:
                 return (False, t_double_prime, None)
         return (True, t_double_prime, witness)
 
-    def gurobiTest(self, sm, em, forbidden_FS=[], first_n_sols = 1):
-        verb = self._verbose
-
-        # convert marking to a |P| length vector
-        m0 = [0 for i in range(len(self._places))]
-        m = [0 for i in range(len(self._places))]
-        for (pl, token_mass) in sm:
-            m0[self._p_ind_map[pl]] = token_mass
-
-        milp = gp.Model("MILPMax")
-        (t_vars, b_vars) = ({}, {})
-        sum_tokenmass = sum(m0)
-        for t in self._transitions:
-            t_vars[t] = milp.addVar(lb=0, ub=sum_tokenmass, vtype=GRB.CONTINUOUS, name=str(t))
-            b_vars[t] = milp.addVar(vtype=GRB.BINARY, name=f"b_{str(t)}")
-
-        # OBJ
-        HUGE_CONST = 1e6
-        goal_place = em[0][0]
-
-        # CONST
-        ind_to_t = {i:t for (t,i) in self._t_ind_map.items()}
-
-        # incidence (the maxmimum amount of token mass on any single place can be sum(m0))
-        pre = self.build_pre_incidence(self._transitions)
-        post = self.build_post_incidence(self._transitions)
-        c_t_prime = self.build_incidence_matrix(pre, post)
-        count = 0
-        for line in c_t_prime:
-            milp.addConstr(sum([t_vars[ind_to_t[i]]*line[i] for i in range(len(line))]) >= 0-m0[count])
-            count+=1
-
-        # b_i - t_i < 1
-        for t_i, b_i in zip(t_vars.values(), b_vars.values()):
-            milp.addConstr(b_i - t_i < 1)
-
-        # t_i - b_i * c <= 0
-        c = 1e10
-        for t_i, b_i in zip(t_vars.values(), b_vars.values()):
-            milp.addConstr(t_i - b_i * c <= 0)
-
-        # 2(\SUM t \in T') < (\SUM t \in T) + |T'|
-        constraints = []
-        sums = []
-        for fs in forbidden_FS:
-            coefs = [1 if t in fs else -1 for t in self._transitions]
-            milp.addConstr(sum([b_vars[t]*coef for (t, coef) in zip(self._transitions, coefs)]) <= (len(fs)-1))
 
     # MILPMax
     def maximize_goal_compound(self, sm, em, forbidden_FS=[], first_n_sols = 1, lim_reachability=True):
@@ -301,8 +215,8 @@ class cpn:
                 mod.post.summarySection(f"Solution {sol_count} -- obj val {round(milp.objective.value()/HUGE_CONST,5)}")
                 # FLOW SOLUTIONS: uncomment to generate certificate of solution realizability
                 # ONLY WORKS FOR PPP!
-                # dg = self.turn_sol_into_DG(non_zero_transitions)
-                # self.get_flow_solutions(dg)
+                dg = self.turn_sol_into_DG(non_zero_transitions)
+                self.get_flow_solutions(dg)
                 if sol_count>=first_n_sols:
                     return (True, non_zero_transitions, milp.objective.value()/HUGE_CONST)
                 sol_count+=1
@@ -555,13 +469,15 @@ class cpn:
             if vertex.graph.name == "h2o":
                 water = vertex
                 vertex.graph.name = "H2O"
-            elif "ribulose" in vertex.graph.name:
+            elif "r5p" in vertex.graph.name:
                 ribuloseP = vertex
                 vertex.graph.name = "RB"
             elif "fructose" in vertex.graph.name:
                 fructoseP = vertex
                 vertex.graph.name = "FR"
             else:
+                #vertex.graph.name = firstname
+                #firstname = chr(ord(firstname)+1)
                 vertex.graph.name = vertex.graph.smiles
             
 
@@ -597,7 +513,7 @@ class cpn:
             #gp.withGraphvizCoords = True
             #gp.graphvizPrefix = 'fontsize="40"'
             printer.graphvizPrefix = 'layout = "dot";'
-            #printer.tikzpictureOption = 'scale=1.75'
+            #printer.tikzpictureOption = 'scale=1.5'
             #printer.tikzpictureOption = 'ultra thick, minimum size=100mm'
             printer.withRuleName = False
             printer.withRuleId = False
@@ -636,16 +552,16 @@ class cpn:
         graphs = []
         for file_name in listdir(graph_folder):
             graph = mod.Graph.fromGMLFile(path.join(graph_folder, file_name))
-            graph.name = file_name[:-4]
+            graph.name = file_name[:-4].lower()
             if graph.name == "fructose-6-phosphate":
                 fructose = graph
             graphs.append(graph)
         rules = [mod.Rule.fromGMLFile(path.join(rule_folder, file_name))
                     for file_name in listdir(rule_folder)]
 
-        non_fructose = [g for g in graphs if g.name!="fructose-6-phosphate"]
+        starting_mols = [g for g in graphs if "r5p" in g.name or g.name=="h2o"]
         strat = (
-            mod.addSubset(non_fructose)
+            mod.addSubset(starting_mols)
             >> mod.repeat[repeat] (
                 rules
             )
